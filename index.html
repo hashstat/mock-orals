@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+
+    <title>Mock Orals</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+    <div class="center-block">
+        <div id="generator" class="form-horizontal center-block">
+            <div class="form-group">
+                <label for="version">Version</label>
+                <select id="version" class="form-control" required="required">
+                    <option value="ESV">ESV - English Standard Version</option>
+                    <option value="NIV">NIV - New International Version</option>
+                    <option value="NKJV" selected="selected">NKJV - New King James Version</option>
+                    <option value="KJV">KJV - King James Version</option>
+                    <option value="NASB1995">NASB - New American Standard Bible 1995</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="division">Division</label>
+                <select id="division" class="form-control" required="required">
+                    <option selected="selected">Senior</option>
+                    <option>Junior</option>
+                    <option>Primary</option>
+                </select>
+            </div>
+            <div id="speech_rate_group" class="form-group">
+                <label for="min_wpm">Speech Rate</label>
+                <div>
+                    <input id="min_wpm" type="text" class="form-control wpm" style="display: inline" placeholder="125"/>
+                    to
+                    <input id="max_wpm" type="text" class="form-control wpm" style="display: inline" placeholder="140"/>
+                    words per minute
+                </div>
+            </div>
+            <div id="max_words_group" class="form-group">
+                <label for="max_words">Maximum Passage Size</label>
+                <div>
+                    <input id="max_words" type="text" class="form-control wpm" style="display: inline" placeholder="350" /> words
+                </div>
+            </div>
+            <div class="form-group">
+                <button id="generate" type="button" class="btn btn-primary">Generate</button> 12 passages to recite in 8 minutes
+            </div>
+            <div id="errors" class="text-danger"></div>
+        </div>
+
+        <div id="passages">
+        </div>
+    </div>
+    </div>
+</body>
+</html>
