@@ -1,0 +1,51 @@
+input.wpm {
+    width: 4em !important;
+}
+
+div.container-fluid {
+    margin: 20px 10px;
+}
+
+div.container-fluid > div {
+    max-width: 600px;
+}
+
+#generator {
+    max-width: 300px;
+}
+
+#passages {
+    padding: 20px 0;
+}
+
+#passages > div {
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 8px;
+    padding: 8px 8px 0 8px;
+    margin-top: 40px;
+    position: relative;
+}
+
+p.reference {
+    font-weight: bold;
+}
+
+.number {
+    font-size: 1.25em;
+    font-weight: bold;
+    position: absolute;
+    align: right;
+    top: 3px;
+    right: 18px;
+}
+
+@media print {
+    #generator {
+        display: none;
+    }
+
+    #passage {
+        padding: 0;
+    }
+}
