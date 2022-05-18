@@ -11,7 +11,7 @@
 
     function formValid(valid) {
         if (valid == undefined) {
-            valid = !$('has-error').length;
+            valid = !$('.has-error').length;
         }
         $('#generate').prop('disabled', !valid);
     }
