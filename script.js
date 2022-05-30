@@ -32,19 +32,22 @@
 
     $(document).ready(function () {
         $('#division').change(function () {
-            let division = $(this);
+            let division = $(this), min_wpm, max_wpm, max_words;
             switch (division.val()) {
                 case 'Senior':
                     min_wpm = 125;
                     max_wpm = 140;
+                    max_words = 350;
                     break;
                 case 'Junior':
                     min_wpm = 115;
                     max_wpm = 130;
+                    max_words = 300;
                     break;
                 case 'Primary':
                     min_wpm = 100;
                     max_wpm = 115;
+                    max_words = 250;
                     break;
                 default:
                     division.addClass('has-error');
@@ -53,6 +56,7 @@
             }
             setDefault($('#min_wpm'), min_wpm);
             setDefault($('#max_wpm'), max_wpm);
+            setDefault($('#max_words'), max_words);
             formValid();
         });
 
