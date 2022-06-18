@@ -123,7 +123,7 @@
                         $('<p class="reference"></p>').text(passage.reference),
                         $('<p></p>').append(passage.text.map((e, i) => (i % 2 ? document.createTextNode(` ${e} `) : $(`<sup>${e}</sup>`)))),
                         $('<p></p>').text(passage.reference)
-                    )
+                    ).click(selectWord)
                 );
             });
         }).fail(function (request, status, error) {
@@ -142,5 +142,17 @@
             chosen.push(items[indices.splice(i, 1)[0]]);
         }
         return chosen;
+    }
+
+
+    function selectWord(e) {
+        let sel = window.getSelection();
+        if (sel.isCollapsed) {
+            sel.modify('move', 'forward', 'character');
+            sel.modify('move', 'backward', 'word');
+            sel.modify('extend', 'forward', 'word');
+        }
+        console.log(sel.toString(), e.target);
+        // sel.modify('move', 'forward', 'character'); //clear selection
     }
 })();
