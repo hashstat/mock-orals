@@ -122,12 +122,13 @@
             let container = $('#passages').html($(`<h2>${division} &mdash; ${version}</h2><h4>${words} words (${Math.round(wpm)} words per minute)</h4>`));
             passages.forEach(function (passage, i) {
                 container.append(
-                    $('<div></div>').append(
-                        $(`<div class="number">${i + 1}</div>`),
-                        $('<p class="reference"></p>').text(passage.reference),
+                    $('<div class="passage"></div>').append(
+                        $('<div class="reference-top"></div>').append(
+                            $('<span></span>').text(passage.reference),
+                            $(`<span class="number">${i + 1}</span>`)),
                         $('<p></p>').append(passage.text.map((e, i) => (i % 2 ? document.createTextNode(` ${e} `) : $(`<sup>${e}</sup>`)))),
-                        $('<p></p>').text(passage.reference)
-                    )
+                        $('<div class="reference-bottom"></div>').append($('<span></span>').text(passage.reference))
+                    ).click(selectWord)
                 );
             });
         }).fail(function (request, status, error) {
@@ -146,5 +147,65 @@
             chosen.push(items[indices.splice(i, 1)[0]]);
         }
         return chosen;
+    }
+
+
+    function selectWord(e) {
+        let sel = undefined;
+        if (e.target.nodeName == 'SPAN') {
+            $(e.target).toggleClass('has-error');
+            return;
+        } else if (e.target.nodeName == 'SUP') {
+            sel = window.getSelection();
+            let node = e.target.nextSibling;
+            sel.collapse(node, 0);
+            for ( ; node.nextSibling != null; node = node.nextSibling) {
+                if (node.nodeName == 'SUP')
+                    break;
+            }
+            if (node.nodeName == 'SUP')
+                sel.extend(node);
+            else
+                sel.extend(node, node.length);
+        } if (e.target.nodeName == 'P') {
+            sel = window.getSelection();
+            let range = sel.getRangeAt(sel.rangeCount - 1);
+            sel.collapseToStart();
+            sel.modify('move', 'forward', 'character')
+            sel.modify('move', 'backward', 'word')
+            sel.extend(range.endContainer, range.endOffset);
+            sel.modify('extend', 'backward', 'character')
+            sel.modify('extend', 'forward', 'word');
+        }
+        if (sel === undefined)
+            return;
+
+        let replacements = [];
+        for (let i = 0; i < sel.rangeCount; i++) {
+            range = sel.getRangeAt(i);
+            let nodes = [];
+            for (let node = range.startContainer; node !== null && node !== range.endContainer.nextSibling; node = node.nextSibling) {
+                if (node.nodeName === '#text') {
+                    let start = node === range.startContainer ? range.startOffset : 0;
+                    let end = node === range.endContainer ? range.endOffset : node.data.length;
+                    let text = node.data.slice(start, end);
+                    let parts = text.split(/\b/);
+                    let nodes = parts.map(function(part) {
+                        if (part.match(/^\w/))
+                            return $('<span class="has-error"></span>').text(part)[0];
+                        return document.createTextNode(part);
+                    });
+                    if (start)
+                        nodes.unshift(document.createTextNode(node.data.substr(0, start)));
+                    if (end < node.data.length)
+                        nodes.push(document.createTextNode(node.data.substr(end)));
+                    replacements.push(function() { node.replaceWith.apply(node, nodes); });
+                } else if (node.nodeName == 'SPAN') {
+                    $(node).toggleClass('has-error');
+                }
+            }
+        }
+        for (let fn of replacements) fn();
+        sel.collapseToEnd();
     }
 })();

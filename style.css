@@ -27,17 +27,35 @@ div.container-fluid > div {
     position: relative;
 }
 
-p.reference {
+.passage {
+    page-break-inside: avoid;
+}
+
+.passage p, .passage span {
+    cursor: crosshair;
+}
+
+.passage span.has-error {
+    color: #a94442;
+    background-color: #f2dede;
+    text-decoration: underline;
+}
+
+div.reference-top {
     font-weight: bold;
+    margin-bottom: 1em;
+}
+
+div.reference-bottom {
+    margin-top: 1em;
 }
 
 .number {
+    border-radius: 15%;
     font-size: 1.25em;
-    font-weight: bold;
-    position: absolute;
-    align: right;
-    top: 3px;
-    right: 18px;
+    width: 2em;
+    text-align: center;
+    float: right;
 }
 
 @media print {
