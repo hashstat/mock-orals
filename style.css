@@ -50,6 +50,10 @@ div.reference-bottom {
     margin-top: 1em;
 }
 
+div.reference-bottom a {
+    float: right;
+}
+
 .number {
     border-radius: 15%;
     font-size: 1.25em;
@@ -69,7 +73,11 @@ div.reference-bottom {
         display: none;
     }
 
-    #passage {
+    .passage {
         padding: 0;
+    }
+
+    div.reference-bottom a {
+        display: none;
     }
 }

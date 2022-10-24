@@ -127,7 +127,9 @@
                             $('<span></span>').text(passage.reference),
                             $(`<span class="number">${i + 1}</span>`)),
                         $('<p></p>').append(passage.text.map((e, i) => (i % 2 ? document.createTextNode(` ${e} `) : $(`<sup>${e}</sup>`)))),
-                        $('<div class="reference-bottom"></div>').append($('<span></span>').text(passage.reference))
+                        $('<div class="reference-bottom"></div>').append(
+                            $('<span></span>').text(passage.reference),
+                            $('<a href="javascript:void(0)">start over</a>').click(clearErrors))
                     ).click(selectWord)
                 );
             });
@@ -147,6 +149,11 @@
             chosen.push(items[indices.splice(i, 1)[0]]);
         }
         return chosen;
+    }
+
+
+    function clearErrors(e) {
+        $(e.target).closest('.passage').find('.has-error').removeClass('has-error');
     }
 
 
