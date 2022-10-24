@@ -58,6 +58,12 @@ div.reference-bottom {
     float: right;
 }
 
+@media screen {
+    body {
+        padding-bottom: 50vh;
+    }
+}
+
 @media print {
     #generator {
         display: none;
