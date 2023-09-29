@@ -37,17 +37,17 @@
                 case 'Senior':
                     min_wpm = 125;
                     max_wpm = 140;
-                    max_words = 350;
+                    max_words = 220;
                     break;
                 case 'Junior':
                     min_wpm = 115;
                     max_wpm = 130;
-                    max_words = 300;
+                    max_words = 200;
                     break;
                 case 'Primary':
                     min_wpm = 100;
                     max_wpm = 115;
-                    max_words = 250;
+                    max_words = 150;
                     break;
                 default:
                     division.addClass('has-error');
