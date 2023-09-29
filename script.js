@@ -89,12 +89,12 @@
 
         $.ajax({
             dataType: 'json',
-            url: `2022/${division.toLowerCase()}-${version.toLowerCase()}.json`,
+            url: `2023/${division.toLowerCase()}-${version.toLowerCase()}.json`,
         }).done(function (passages) {
             console.log(`received ${passages.length} passages`);
             let max_words = Number(valueOf($('#max_words')));
             if (!isNaN(max_words)) {
-                passages = passages.filter(passage => (passage.words <= max_words));
+                passages = passages.filter(passage => (passage.word_count <= max_words));
                 console.log(`${passages.length} passages remaining after filtering those with greater than ${max_words} words`);
             }
 
@@ -105,7 +105,7 @@
                 // TODO Limit the number of attempts to prevent a run-away script
                 //      Maybe attempt to do a feasibility test beforehand
                 let picked = pick(passages, 12);
-                words = picked.reduce((total, p) => (total + p.words), 0);
+                words = picked.reduce((total, p) => (total + p.word_count), 0);
                 wpm = words / 8;
                 if (min_wpm <= wpm && wpm <= max_wpm) {
                     console.log(`words = ${words}, wpm = ${wpm}`)
@@ -126,7 +126,7 @@
                         $('<div class="reference-top"></div>').append(
                             $('<span></span>').text(passage.reference),
                             $(`<span class="number">${i + 1}</span>`)),
-                        $('<p></p>').append(passage.text.map((e, i) => (i % 2 ? document.createTextNode(` ${e} `) : $(`<sup>${e}</sup>`)))),
+                        $('<p></p>').append(passage.cards.join(' ').replace(/\(\s*(\d+)\s*\)/g, '<dfn>($1)</dfn>')),
                         $('<div class="reference-bottom"></div>').append(
                             $('<span></span>').text(passage.reference),
                             $('<a href="javascript:void(0)">start over</a>').click(clearErrors))
@@ -162,12 +162,12 @@
         if (e.target.nodeName == 'SPAN') {
             $(e.target).toggleClass('has-error');
             return;
-        } else if (e.target.nodeName == 'SUP') {
+        } else if (e.target.nodeName == 'DFN') {
             sel = window.getSelection();
             let node = e.target.nextSibling;
             sel.collapse(node, 0);
             for ( ; node.nextSibling != null; node = node.nextSibling) {
-                if (node.nodeName == 'SUP')
+                if (node.nodeName == 'DFN')
                     break;
             }
             if (node.nodeName == 'SUP')
