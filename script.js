@@ -18,9 +18,8 @@
 
 
     function speechRateChanged() {
-        let min_wpm = Number(valueOf($('#min_wpm'))),
-            max_wpm = Number(valueOf($('#max_wpm')));
-        if (isNaN(min_wpm) || isNaN(max_wpm) || min_wpm > max_wpm) {
+        let target_wpm = Number(valueOf($('#target_wpm')));
+        if (isNaN(target_wpm)|| target_wpm <= 0) {
             $('#speech_rate_group').addClass('has-error');
             formValid(false);
         } else {
@@ -32,36 +31,31 @@
 
     $(document).ready(function () {
         $('#division').change(function () {
-            let division = $(this), min_wpm, max_wpm, max_words;
+            let division = $(this), target_wpm, max_words;
             switch (division.val()) {
                 case 'Senior':
-                    min_wpm = 125;
-                    max_wpm = 140;
-                    max_words = 220;
+                    target_wpm = 140;
+                    max_words = 170;
                     break;
                 case 'Junior':
-                    min_wpm = 115;
-                    max_wpm = 130;
-                    max_words = 200;
+                    target_wpm = 130;
+                    max_words = 160;
                     break;
                 case 'Primary':
-                    min_wpm = 100;
-                    max_wpm = 115;
-                    max_words = 150;
+                    target_wpm = 115;
+                    max_words = 120;
                     break;
                 default:
                     division.addClass('has-error');
                     formValid(false);
                     return;
             }
-            setDefault($('#min_wpm'), min_wpm);
-            setDefault($('#max_wpm'), max_wpm);
+            setDefault($('#target_wpm'), target_wpm);
             setDefault($('#max_words'), max_words);
             formValid();
         });
 
-        $('#min_wpm').change(speechRateChanged);
-        $('#max_wpm').change(speechRateChanged);
+        $('#target_wpm').change(speechRateChanged);
 
         $('#max_words').change(function () {
             let max_words = Number(valueOf($(this)));
@@ -89,7 +83,7 @@
 
         $.ajax({
             dataType: 'json',
-            url: `2023/${division.toLowerCase()}-${version.toLowerCase()}.json`,
+            url: `2024/${division.toLowerCase()}-${version.toLowerCase()}.json`,
         }).done(function (passages) {
             console.log(`received ${passages.length} passages`);
             let max_words = Number(valueOf($('#max_words')));
@@ -98,8 +92,9 @@
                 console.log(`${passages.length} passages remaining after filtering those with greater than ${max_words} words`);
             }
 
-            let min_wpm = Number(valueOf($('#min_wpm'))),
-                max_wpm = Number(valueOf($('#max_wpm'))),
+            let target_wpm = Number(valueOf($('#target_wpm'))),
+                min_wpm = target_wpm - 7.5,
+                max_wpm = target_wpm + 7.5,
                 attempt, words, wpm;
             for (attempt = 0; attempt < 1000000; attempt++) {
                 // TODO Limit the number of attempts to prevent a run-away script
