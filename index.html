@@ -49,6 +49,17 @@
                     <input id="max_words" type="text" class="form-control wpm" style="display: inline" placeholder="170" /> words
                 </div>
             </div>
+            <div id="text-size-ctr" class="form-group">
+                <label>Text Size</label>
+                <br>
+                <label for="small"><input id="small" name="text-size" class="text-size" value="14px" type="radio" checked>S</label>
+                <label for="mid"><input id="mid" name="text-size" class="text-size" value="18px" type="radio">M</label>
+                <label for="large"><input id="large" name="text-size" class="text-size" value="22px" type="radio">L</label>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="hide-text" id="hide-text">
+                <label for="hide-text">Hide Text</label>
+            </div>
             <div class="form-group">
                 <button id="generate" type="button" class="btn btn-primary">Generate</button> 12 passages to recite in 8 minutes
             </div>
@@ -59,5 +70,25 @@
         </div>
     </div>
     </div>
+    <script>
+        // passage settings
+        const passages = document.querySelector("#passages")
+        const hideTextCheck = document.querySelector("#hide-text")
+
+        hideTextCheck.addEventListener("change", () => {
+            if (hideTextCheck.checked) {
+                passages.classList.add("hide-text-ctr")
+            }
+            else {
+                passages.classList.remove("hide-text-ctr")
+            }
+        })
+
+        document.querySelectorAll(".text-size").forEach(radio => {
+            radio.addEventListener("change", () => {
+                passages.style.fontSize = radio.value
+            })
+        })
+    </script>
 </body>
 </html>
