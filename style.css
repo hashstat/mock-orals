@@ -1,83 +1,32 @@
-input.wpm {
-    width: 4em !important;
+
+.bg-Primary { background-color: #836ABC; }
+.bg-Junior { background-color: #4B67B2; }
+.bg-Senior { background-color: #288E93; }
+
+div#passages {
+  transition: opacity 0.35s ease-in-out;
 }
 
-div.container-fluid {
-    margin: 20px 10px;
+div#passages > div.card {
+  max-width: 40rem;
 }
 
-div.container-fluid > div {
-    max-width: 600px;
+p.card-text {
+  text-align: justify;
+  text-justify: inter-word;
 }
 
-#generator {
-    max-width: 300px;
+abbr:has(button) {
+  text-decoration: none !important;
+  cursor: inherit !important;
+  border-bottom: none !important;
 }
 
-#passages {
-    padding: 20px 0;
+svg.bi-escape path {
+  stroke: currentColor;
+  stroke-width: 1px;
 }
 
-#passages > div {
-    background-color: #f7f7f9;
-    border: 1px solid #e1e1e8;
-    border-radius: 8px;
-    padding: 8px 8px 0 8px;
-    margin-top: 40px;
-    position: relative;
-}
-
-.passage {
-    page-break-inside: avoid;
-}
-
-.passage p, .passage span {
-    cursor: crosshair;
-}
-
-.passage span.has-error {
-    color: #a94442;
-    background-color: #f2dede;
-    text-decoration: underline;
-}
-
-div.reference-top {
-    font-weight: bold;
-    margin-bottom: 1em;
-}
-
-div.reference-bottom {
-    margin-top: 1em;
-}
-
-div.reference-bottom a {
-    float: right;
-}
-
-.number {
-    border-radius: 15%;
-    font-size: 1.25em;
-    width: 2em;
-    text-align: center;
-    float: right;
-}
-
-@media screen {
-    body {
-        padding-bottom: 50vh;
-    }
-}
-
-@media print {
-    #generator {
-        display: none;
-    }
-
-    .passage {
-        padding: 0;
-    }
-
-    div.reference-bottom a {
-        display: none;
-    }
+span.verse-word, span.verse-number {
+  cursor: default !important;
 }
