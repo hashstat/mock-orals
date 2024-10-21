@@ -22,11 +22,20 @@ abbr:has(button) {
   border-bottom: none !important;
 }
 
-svg.bi-escape path {
+/* TODO: clean this up after deciding on icons */
+svg.bi-escape path, svg.bi-arrow-counterclockwise path, svg.bi-backspace path {
   stroke: currentColor;
   stroke-width: 1px;
 }
 
 span.verse-word, span.verse-number {
   cursor: default !important;
+}
+
+span.word-error {
+  text-decoration: orangered wavy underline !important;
+}
+
+span.word-warning {
+  background-color: var(--bs-warning-bg-subtle) !important;
 }

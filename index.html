@@ -18,6 +18,57 @@
     <div id="passages"></div>
   </div>
 
+
+  <template id="verse-card-template">
+    <div class="card text-bg-light border-secondary shadow mx-auto m-4">
+      <div class="card-header">
+        <div class="row">
+          <div class="col"><span class="passage-number fs-4"></span></div>
+          <div class="col position-relative"><span class="division-passage badge fs-6 rounded-pill position-absolute top-50 start-50 translate-middle" aria-lable="Division and passage number" title="Division&nbsp;&nbsp;•&nbsp;&nbsp;Passage number"></span></div>
+          <div class="col">
+            <div class="float-end" role="group" aria-label="Passage buttons">
+              <button type="button" class="btn btn-secondary btn-sm btn-card-start-over" aria-label="Start over" title="Start over">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16" area-hidden="true" focusable="false">
+                  <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                  <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+                </svg>
+                <!--
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16" area-hidden="true" focusable="false">
+                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
+                </svg>
+                -->
+              </button>
+              <button type="button" class="btn btn-danger btn-sm btn-card-pass" aria-label="Pass" title="Pass">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-escape" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <path d="M8.538 1.02a.5.5 0 1 0-.076.998 6 6 0 1 1-6.445 6.444.5.5 0 0 0-.997.076A7 7 0 1 0 8.538 1.02"/>
+                  <path d="M7.096 7.828a.5.5 0 0 0 .707-.707L2.707 2.025h2.768a.5.5 0 1 0 0-1H1.5a.5.5 0 0 0-.5.5V5.5a.5.5 0 0 0 1 0V2.732z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><span class="passage-reference verse-word"></span></h5>
+        <p class="card-text">
+        </p>
+        <div class="card-subtitle"><span class="passage-reference verse-word"></span></div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col passage-stats" aria-label="Cards, verses, and words" title="Cards / Verses / Words"></div>
+          <div class="col position-relative"><span class="translation-release position-absolute top-50 start-50 translate-middle" aria-label="translation and release" title="Translation&nbsp;&nbsp;•&nbsp;&nbsp;Release"></span></div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="script.js"></script>
