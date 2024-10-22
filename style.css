@@ -22,12 +22,6 @@ abbr:has(button) {
   border-bottom: none !important;
 }
 
-/* TODO: clean this up after deciding on icons */
-svg.bi-escape path, svg.bi-arrow-counterclockwise path, svg.bi-backspace path {
-  stroke: currentColor;
-  stroke-width: 1px;
-}
-
 span.verse-word, span.verse-number {
   cursor: default !important;
 }
@@ -38,4 +32,12 @@ span.word-error {
 
 span.word-warning {
   background-color: var(--bs-warning-bg-subtle) !important;
+}
+
+div.card-passed div.card-header, div.card-passed div.card-footer {
+  background-color: var(--bs-danger-bg-subtle) !important;
+}
+
+div.card-completed div.card-header, div.card-completed div.card-footer {
+  background-color: var(--bs-success-bg-subtle) !important;
 }

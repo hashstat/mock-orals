@@ -75,6 +75,9 @@ function setPassages(passages) {
   for (const btn of node.querySelectorAll('button.btn-card-pass')) {
     btn.addEventListener('click', passClicked);
   }
+  for (const btn of node.querySelectorAll('button.btn-card-complete')) {
+    btn.addEventListener('click', completeClicked);
+  }
   for (const words of node.querySelectorAll('div.card-body')) {
     words.addEventListener('click', wordClicked);
   }
@@ -135,6 +138,7 @@ function wordClicked(event) {
 function startOverClicked(event) {
   console.log('start over clicked', event);
   const card = event.target.closest('div.card');
+  card.classList.remove('card-completed', 'card-passed');
   for (const node of card.querySelectorAll('span.word-warning')) {
     node.classList.remove('word-warning');
   }
@@ -148,9 +152,16 @@ function startOverClicked(event) {
 function passClicked(event) {
   console.log('pass clicked', event);
   const card = event.target.closest('div.card');
-  for (const node of card.querySelectorAll('div.card-header, div.card-footer')) {
-    node.classList.add('text-bg-danger');
-  }
+  card.classList.add('card-passed');
+  card.classList.remove('card-completed');
+}
+
+
+function completeClicked(event) {
+  console.log('complete clicked', event);
+  const card = event.target.closest('div.card');
+  card.classList.add('card-completed');
+  card.classList.remove('card-passed');
 }
 
 
