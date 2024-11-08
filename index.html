@@ -13,36 +13,197 @@
 </head>
 
 <body>
+
+  <div class="p-1">
+    <div class="container">
+      <div class="col text-center">
+        <div class="btn-group" role="group" aria-label="Navigation buttons">
+          <button id="generate-button" type="button" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+              <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+              <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+            </svg>
+            Generate
+          </button>
+          <button id="settings-button" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#settings">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
+              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+            </svg>
+            Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="settings" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Passage Settings</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Translation</label>
+            <div id="translation">
+              <input type="radio" class="btn-check" name="translation" id="translation-esv" value="esv" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="translation-esv">ESV</label>
+
+              <input type="radio" class="btn-check" name="translation" id="translation-kjv" value="kjv" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="translation-kjv">KJV</label>
+
+              <input type="radio" class="btn-check" name="translation" id="translation-nasb" value="nasb" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="translation-nasb">NASB</label>
+
+              <input type="radio" class="btn-check" name="translation" id="translation-niv" value="niv" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="translation-niv">NIV</label>
+
+              <input type="radio" class="btn-check" name="translation" id="translation-nkjv" value="nkjv" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="translation-nkjv">NKJV</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Division</label>
+            <div id="division">
+              <input type="radio" class="btn-check" name="division" id="division-primary" value="primary" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="division-primary">Primary</label>
+
+              <input type="radio" class="btn-check" name="division" id="division-junior" value="junior" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="division-junior">Junior</label>
+
+              <input type="radio" class="btn-check" name="division" id="division-senior" value="senior" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="division-senior">Senior</label>
+            </div>
+          </div>
+
+          <div class="mb-3" id="speech-rate-group">
+            <label class="form-label" for="speech-rate-range">Speech Rate</label>
+            <button type="button" class="btn btn-sm align-baseline" id="speech-rate-reset-button" title="Reset to default value" aria-label="Reset speech rate to default">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+              </svg>
+            </button>
+            <span class="float-end">
+              <input type="text" inputmode="numeric" id="speech-rate">
+              words per minute
+            </span>
+            <input type="range" class="form-range" min="100" max="200" step="1" id="speech-rate-range">
+          </div>
+
+          <div class="mb-3" id="word-limit-group">
+            <label class="form-label" for="max-words-range">Maximum Passage Size</label>
+            <button type="button" class="btn btn-sm align-baseline" id="max-words-reset-button" title="Reset to default value" aria-label="Reset maximum passage size to default">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+              </svg>
+            </button>
+            <span class="float-end">
+              <input type="text" inputmode="numeric" id="max-words">
+              words
+            </span>
+            <input type="range" class="form-range" min="100" max="200" step="1" id="max-words-range">
+          </div>
+
+          <div class="mb-3 row">
+            <label class="form-label" for="text-size-sm">Text Size</label>
+            <div class="col" id="text-size">
+              <input type="radio" class="btn-check" name="text-size" id="text-size-sm" value="sm" autocomplete="off">
+              <label class="btn btn-outline-secondary align-bottom text-size-sm" for="text-size-sm" title="Small" aria-label="Small">S</label>
+
+              <input type="radio" class="btn-check" name="text-size" id="text-size-md" value="md" autocomplete="off" checked>
+              <label class="btn btn-outline-secondary align-bottom text-size-md" for="text-size-md" title="Medium" aria-label="Medium">M</label>
+
+              <input type="radio" class="btn-check" name="text-size" id="text-size-lg" value="lg" autocomplete="off">
+              <label class="btn btn-outline-secondary align-bottom text-size-lg" for="text-size-lg" title="Large" aria-label="Large">L</label>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="form-label" for="text-size-sm">Hide Text</label>
+            <div class="col" id="hide-text">
+              <input type="checkbox" class="btn-check" name="hide-text" id="hide-verse-numbers" value="verse-numbers" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="hide-verse-numbers" title="Hide verse numbers in passage text" aria-label="Hide verse numbers in passage text">Verse numbers</label>
+
+              <input type="checkbox" class="btn-check" name="hide-text" id="hide-passage-text" value="passage-text" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="hide-passage-text" title="Show only the passage reference" aria-label="Show only the passage reference">Passage text</label>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label class="form-label" for="text-size-sm">Theme</label>
+            <div class="col" id="theme">
+              <input type="radio" class="btn-check" name="theme" id="theme-light" value="light" autocomplete="off" checked>
+              <label class="btn btn-outline-secondary" for="theme-light" title="Light" aria-label="Light">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-sun-fill" viewBox="0 0 16 16">
+                  <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                </svg>
+                Light
+              </label>
+
+              <input type="radio" class="btn-check" name="theme" id="theme-dark" value="dark" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="theme-dark" title="Dark" aria-label="Dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+                  <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+                  <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
+                </svg>
+                Dark
+              </label>
+
+              <input type="radio" class="btn-check" name="theme" id="theme-auto" value="auto" autocomplete="off">
+              <label class="btn btn-outline-secondary" for="theme-auto" title="Auto" aria-label="Auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/>
+                </svg>
+                Auto
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!--
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save-settings-button" data-bs-toggle="modal" data-bs-target="#settings">Save changes</button>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+
   <div class="container-md">
-    <button type="button" onclick="generate()" class="btn btn-primary btn-lg">Generate Passages</button>
-    <div id="passages"></div>
+    <div id="passages">
+      <h1 class="mx-auto text-center" style="margin-top: 2rem;">Mock Orals Generator</h1>
+    </div>
   </div>
 
 
   <template id="verse-card-template">
-    <div class="card text-bg-light border-secondary shadow mx-auto m-4">
-      <div class="card-header">
+    <div class="passage card text-bg-light border-secondary shadow mx-auto m-4">
+      <div class="card-header container">
         <div class="row">
-          <div class="col"><span class="passage-number fs-4"></span></div>
-          <div class="col position-relative"><span class="division-passage badge fs-6 rounded-pill position-absolute top-50 start-50 translate-middle" aria-lable="Division and passage number" title="Division&nbsp;&nbsp;•&nbsp;&nbsp;Passage number"></span></div>
           <div class="col">
-            <div class="float-end" role="group" aria-label="Passage buttons">
+            <span class="passage-number"></span>
+          </div>
+          <div class="col text-center">
+            <span class="division-passage badge fs-6 rounded-pill" aria-lable="Division and passage number" title="Division&nbsp;&nbsp;•&nbsp;&nbsp;Passage number"></span>
+          </div>
+          <div class="col text-end">
+            <div role="group" aria-label="Passage buttons">
               <button type="button" class="btn btn-secondary btn-sm btn-card-start-over" aria-label="Start over" title="Start over">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16" area-hidden="true" focusable="false">
                   <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
                   <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
                 </svg>
-                <!--
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16" area-hidden="true" focusable="false">
-                  <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
-                  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-skip-backward-fill" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                  <path d="M.5 3.5A.5.5 0 0 0 0 4v8a.5.5 0 0 0 1 0V8.753l6.267 3.636c.54.313 1.233-.066 1.233-.697v-2.94l6.267 3.636c.54.314 1.233-.065 1.233-.696V4.308c0-.63-.693-1.01-1.233-.696L8.5 7.248v-2.94c0-.63-.692-1.01-1.233-.696L1 7.248V4a.5.5 0 0 0-.5-.5"/>
-                </svg>
-                -->
               </button>
-              <button type="button" class="btn btn-danger btn-sm btn-card-pass" aria-label="Pass" title="Pass">
+              <button type="button" class="btn btn-sm btn-card-pass" aria-label="Pass" title="Pass">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-escape" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                   <path d="M8.538 1.02a.5.5 0 1 0-.076.998 6 6 0 1 1-6.445 6.444.5.5 0 0 0-.997.076A7 7 0 1 0 8.538 1.02"/>
                   <path d="M7.096 7.828a.5.5 0 0 0 .707-.707L2.707 2.025h2.768a.5.5 0 1 0 0-1H1.5a.5.5 0 0 0-.5.5V5.5a.5.5 0 0 0 1 0V2.732z"/>
@@ -53,18 +214,22 @@
         </div>
       </div>
       <div class="card-body">
-        <h5 class="card-title"><span class="passage-reference verse-word"></span></h5>
-        <p class="card-text">
-        </p>
-        <div class="card-subtitle"><span class="passage-reference verse-word"></span></div>
+        <div class="card-title"><span></span></div>
+        <div class="passage-text">
+          <p class="card-text">
+          </p>
+          <div class="card-subtitle"><span></span></div>
+        </div>
       </div>
-      <div class="card-footer">
+      <div class="card-footer container">
         <div class="row">
           <div class="col passage-stats" aria-label="Cards, verses, and words" title="Cards / Verses / Words"></div>
-          <div class="col position-relative"><span class="translation-release position-absolute top-50 start-50 translate-middle" aria-label="translation and release" title="Translation&nbsp;&nbsp;•&nbsp;&nbsp;Release"></span></div>
-          <div class="col">
-            <div class="float-end" role="group" aria-label="Passage buttons">
-              <button type="button" class="btn btn-success btn-sm btn-card-complete" aria-label="Complete" title="Complete">
+          <div class="col text-center">
+            <span class="translation-release" aria-label="translation and release" title="Translation&nbsp;&nbsp;•&nbsp;&nbsp;Release"></span>
+          </div>
+          <div class="col text-end">
+            <div role="group" aria-label="Passage buttons">
+              <button type="button" class="btn btn-sm btn-card-complete" aria-label="Complete" title="Complete">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
                   <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
                   <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
