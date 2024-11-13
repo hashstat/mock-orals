@@ -38,8 +38,14 @@
 .bg-Junior { background-color: #4B67B2; }
 .bg-Senior { background-color: #288E93; }
 
+.division-translation {
+  font-size: 120%;
+  padding: 0.7rem 1rem;
+}
+
 div#passages {
   transition: opacity 0.35s ease-in-out;
+  margin-top: 1rem;
   margin-bottom: 60%;
 }
 
@@ -70,7 +76,7 @@ p.card-text {
 }
 
 .word-warning {
-  background-color: var(--bs-warning-bg-subtle) !important;
+  background-color: var(--bs-warning-border-subtle) !important;
 }
 
 .card-passed .card-header, .card-passed .card-footer {

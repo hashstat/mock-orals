@@ -37,25 +37,32 @@ function $(query, element=document) {
 
 
 async function generate() {
-  console.log('generating passages')
-  document.getElementById('passages').style.opacity = 0
+  $('#passages').style.opacity = 0
+
   const translation = $('input[name="translation"]:checked').value,
       division = $('input[name="division"]:checked').value,
       speechRate = Number($('#speech-rate-range').value),
       wordLimit = Number($('#max-words-range').value)
-  let passages = await fetchPassages(division, translation)
-  passages = passages.filter(passage => (passage.word_count <= wordLimit))
-  console.log(`${passages.length} passages remaining after filtering those with greater than ${wordLimit} words`)
-  passages = await choosePassages(passages, PASSAGE_COUNT, RECITATION_MINUTES, speechRate)
-  setPassages(passages)
-  /* console.log(passages); */
+
+  console.log(`generating passages: translation = ${translation}, division = ${division}, speechRate = ${speechRate}, wordLimit = ${wordLimit}`)
+  try {
+    let passages = await fetchPassages(division, translation)
+    passages = passages.filter(passage => (passage.word_count <= wordLimit))
+    console.log(`${passages.length} passages remaining after filtering those with greater than ${wordLimit} words`)
+    passages = await choosePassages(passages, PASSAGE_COUNT, RECITATION_MINUTES, speechRate)
+    setPassages(passages)
+  } catch (error) {
+    console.log(error)
+    $('#passages').replaceChildren()
+  }
 }
 
 
 async function fetchPassages(division, translation) {
-  let passages = passageCache[division]
+  const key = `${division.toLowerCase()}-${translation.toLowerCase()}`
+  let passages = passageCache[key]
   if (passages === undefined) {
-    passages = await (await fetch(`${YEAR}/${division.toLowerCase()}-${translation.toLowerCase()}.json`, {method: 'GET'})).json()
+    passages = await (await fetch(`${YEAR}/${key}.json`, {method: 'GET'})).json()
     passageCache[division] = passages
   }
   return passages
@@ -97,7 +104,14 @@ function pick(items, count) {
 
 
 function setPassages(passages) {
-  const node = document.createDocumentFragment()
+  const node = document.createDocumentFragment(),
+      labels = $('#division-translation-template').content.cloneNode(true)
+
+  $('.division-label', labels).innerText = passages[0].division
+  $('.translation-label', labels).innerText = passages[0].translation
+  $('.division-translation', labels).classList.add(`bg-${passages[0].division}`)
+  node.appendChild(labels)
+
   for (const [i, passage] of passages.entries()) {
     node.appendChild(passageCard(passage,i + 1))
   }
@@ -114,7 +128,7 @@ function setPassages(passages) {
     words.addEventListener('click', wordClicked)
   }
 
-  const div = document.getElementById('passages')
+  const div = $('#passages')
   div.replaceChildren(node)
   div.style.opacity = 1
 }
@@ -122,15 +136,11 @@ function setPassages(passages) {
 
 function passageCard(passage, number) {
   /* Create card node by cloning the html template, then fill in fields. */
-  const card = document.getElementById('verse-card-template').content.cloneNode(true)
-  card.querySelector('.passage-number').textContent = number
-  const node = card.querySelector('.division-passage')
-  node.innerHTML = `${passage.division}&nbsp;&nbsp;•&nbsp;&nbsp;${passage.passage_number}`
-  node.classList.add(`bg-${passage.division}`)
-  card.querySelector('.card-title span').textContent = passage.reference
-  card.querySelector('.card-subtitle span').textContent = passage.reference
-  card.querySelector('.passage-stats').textContent = `${passage.cards.length} / ${passage.verse_count} / ${passage.word_count}`
-  card.querySelector('.translation-release').innerHTML = `${passage.translation}&nbsp;&nbsp;•&nbsp;&nbsp;${passage.release}`
+  const card = $('#verse-card-template').content.cloneNode(true)
+  $('.passage-number', card).textContent = number
+  $('.card-title span', card).textContent = passage.reference
+  $('.card-subtitle span', card).textContent = passage.reference
+  $('.release-passage', card).textContent = `${passage.release}  •  ${passage.passage_number}`
 
   /* Split card text and put each word in its own span, then add to card. */
   const spans = document.createDocumentFragment(),
@@ -147,7 +157,7 @@ function passageCard(passage, number) {
       spans.appendChild(span)
     }
   }
-  card.querySelector('.card-text').appendChild(spans)
+  $('.card-text', card).appendChild(spans)
 
   return card
 }
@@ -293,18 +303,22 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   hideVerseNumbers.addEventListener('input', (event) => {
-    hidePassageText.checked = false
+    if (event.target.checked) {
+      hidePassageText.checked = false
     root.style.setProperty('--passage-text-display', 'block')
+    }
     root.style.setProperty('--verse-number-display', event.target.checked ? 'none': 'inline')
   })
 
   hidePassageText.addEventListener('input', (event) => {
-    hideVerseNumbers.checked = false
+    if (event.target.checked) {
+      hideVerseNumbers.checked = false
+      root.style.setProperty('--verse-number-display', 'inline')
+    }
     root.style.setProperty('--passage-text-display', event.target.checked ? 'none' : 'block')
-    root.style.setProperty('--verse-number-display', 'inline')
   })
 
-  document.getElementById('theme').addEventListener('input', (event) => {
+  $('#theme').addEventListener('input', (event) => {
     setTheme(event.target.value)
   })
 
@@ -332,14 +346,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   $(`input[value="${localStorage.translation || DEFAULTS.translation}"]`, translation).checked = true
   $(`input[value="${localStorage.division || DEFAULTS.division}"]`, division).checked = true
-  division.dispatchEvent(new Event('input'))
   $(`input[value="${localStorage.textSize || DEFAULTS.textSize}"]`, textSize).checked = true
   hideVerseNumbers.checked = localStorage.hideVerseNumbers === 'true'
   hidePassageText.checked = localStorage.hidePassageText === 'true'
   $(`input[value="${localStorage.theme || DEFAULTS.theme}"]`, theme).checked = true
 
-  $('#generate-button').addEventListener('click', generate)
-  $('#settings-button').click()
+  division.dispatchEvent(new Event('input'))
+  $('input:checked', textSize).dispatchEvent(new Event('input', {bubbles: true}))
+  hideVerseNumbers.dispatchEvent(new Event('input'))
+  hidePassageText.dispatchEvent(new Event('input'))
+  // Theme updating is performed early in index.html
+
+  for (const button of $('.generate-button')) {
+    button.addEventListener('click', generate)
+  }
+  new bootstrap.Modal('#settings').show()
+//  $('#settings-button').click()
 })
 
 
@@ -355,6 +377,9 @@ function setTheme(theme) {
 function preferredTheme() {
   let theme = localStorage.theme
   if (!theme || theme === 'auto') {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   }
+  return theme;
 }
+
+setTheme(preferredTheme())

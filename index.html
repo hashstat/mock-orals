@@ -8,8 +8,11 @@
   <title>Mock Orals</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -18,7 +21,7 @@
     <div class="container">
       <div class="col text-center">
         <div class="btn-group" role="group" aria-label="Navigation buttons">
-          <button id="generate-button" type="button" class="btn btn-primary">
+          <button type="button" class="generate-button btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
               <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
               <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
@@ -140,7 +143,7 @@
             <label class="form-label" for="text-size-sm">Theme</label>
             <div class="col" id="theme">
               <input type="radio" class="btn-check" name="theme" id="theme-light" value="light" autocomplete="off" checked>
-              <label class="btn btn-outline-secondary" for="theme-light" title="Light" aria-label="Light">
+              <label class="btn btn-outline-secondary" for="theme-light" aria-label="Light">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-sun-fill" viewBox="0 0 16 16">
                   <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
                 </svg>
@@ -148,7 +151,7 @@
               </label>
 
               <input type="radio" class="btn-check" name="theme" id="theme-dark" value="dark" autocomplete="off">
-              <label class="btn btn-outline-secondary" for="theme-dark" title="Dark" aria-label="Dark">
+              <label class="btn btn-outline-secondary" for="theme-dark" aria-label="Dark">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
                   <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
                   <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
@@ -157,7 +160,7 @@
               </label>
 
               <input type="radio" class="btn-check" name="theme" id="theme-auto" value="auto" autocomplete="off">
-              <label class="btn btn-outline-secondary" for="theme-auto" title="Auto" aria-label="Auto">
+              <label class="btn btn-outline-secondary" for="theme-auto" aria-label="Auto">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/>
                 </svg>
@@ -167,12 +170,16 @@
           </div>
         </div>
 
-        <!--
         <div class="modal-footer">
+          <button type="button" class="generate-button btn btn-primary" data-bs-dismiss="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+              <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+              <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+            </svg>
+            Generate
+          </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="save-settings-button" data-bs-toggle="modal" data-bs-target="#settings">Save changes</button>
         </div>
-        -->
       </div>
     </div>
   </div>
@@ -185,34 +192,40 @@
   </div>
 
 
-  <template id="verse-card-template">
-    <div class="passage card text-bg-light border-secondary shadow mx-auto m-4">
-      <div class="card-header container">
-        <div class="row">
-          <div class="col">
-            <span class="passage-number"></span>
-          </div>
-          <div class="col text-center">
-            <span class="division-passage badge fs-6 rounded-pill" aria-lable="Division and passage number" title="Division&nbsp;&nbsp;•&nbsp;&nbsp;Passage number"></span>
-          </div>
-          <div class="col text-end">
-            <div role="group" aria-label="Passage buttons">
-              <button type="button" class="btn btn-secondary btn-sm btn-card-start-over" aria-label="Start over" title="Start over">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16" area-hidden="true" focusable="false">
-                  <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
-                  <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
-                </svg>
-              </button>
-              <button type="button" class="btn btn-sm btn-card-pass" aria-label="Pass" title="Pass">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-escape" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                  <path d="M8.538 1.02a.5.5 0 1 0-.076.998 6 6 0 1 1-6.445 6.444.5.5 0 0 0-.997.076A7 7 0 1 0 8.538 1.02"/>
-                  <path d="M7.096 7.828a.5.5 0 0 0 .707-.707L2.707 2.025h2.768a.5.5 0 1 0 0-1H1.5a.5.5 0 0 0-.5.5V5.5a.5.5 0 0 0 1 0V2.732z"/>
-                </svg>
-              </button>
-            </div>
-          </div>
+  <template id="division-translation-template">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <span class="division-translation badge rounded-pill" aria-lable="Division and Bible translation" title="Division&nbsp;&nbsp;•&nbsp;&nbsp;Bible translation">
+            <span class="division-label"></span>&nbsp;&nbsp;•&nbsp;&nbsp;<span class="translation-label"></span>
+          </span>
         </div>
       </div>
+    </div>
+  </template>
+
+  <template id="verse-card-template">
+    <div class="passage card border-secondary shadow mx-auto m-4">
+      <div class="card-header d-flex justify-content-between">
+          <span class="passage-number"></span>
+          <div class="text-end" role="group" aria-label="Passage buttons">
+            <button type="button" class="btn btn-secondary btn-sm btn-card-start-over" aria-label="Start over" title="Start over">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16" area-hidden="true" focusable="false">
+                <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+                <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+              </svg>
+              Start over
+            </button>
+            <button type="button" class="btn btn-sm btn-card-pass" aria-label="Pass" title="Pass">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-escape" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M8.538 1.02a.5.5 0 1 0-.076.998 6 6 0 1 1-6.445 6.444.5.5 0 0 0-.997.076A7 7 0 1 0 8.538 1.02"/>
+                <path d="M7.096 7.828a.5.5 0 0 0 .707-.707L2.707 2.025h2.768a.5.5 0 1 0 0-1H1.5a.5.5 0 0 0-.5.5V5.5a.5.5 0 0 0 1 0V2.732z"/>
+              </svg>
+              Pass
+            </button>
+          </div>
+      </div>
+
       <div class="card-body">
         <div class="card-title"><span></span></div>
         <div class="passage-text">
@@ -221,30 +234,18 @@
           <div class="card-subtitle"><span></span></div>
         </div>
       </div>
-      <div class="card-footer container">
-        <div class="row">
-          <div class="col passage-stats" aria-label="Cards, verses, and words" title="Cards / Verses / Words"></div>
-          <div class="col text-center">
-            <span class="translation-release" aria-label="translation and release" title="Translation&nbsp;&nbsp;•&nbsp;&nbsp;Release"></span>
-          </div>
-          <div class="col text-end">
-            <div role="group" aria-label="Passage buttons">
-              <button type="button" class="btn btn-sm btn-card-complete" aria-label="Complete" title="Complete">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
-                  <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
-                  <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+
+      <div class="card-footer d-flex justify-content-between">
+        <div class="release-passage" aria-label="Release and passage number" title="Release • Passage #"></div>
+        <button type="button" class="btn btn-sm btn-card-complete" aria-label="Complete" title="Complete">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+            <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+            <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+          </svg>
+          Complete
+        </button>
       </div>
     </div>
   </template>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
 </body>
 </html>
