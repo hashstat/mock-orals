@@ -43,15 +43,18 @@
   padding: 0.7rem 1rem;
 }
 
+.narrow {
+  max-width: 40rem;
+}
+
 div#passages {
-  transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
   margin-top: 1rem;
   margin-bottom: 60%;
 }
 
 div.passage {
   cursor: default !important;
-  max-width: 40rem;
 }
 
 .passage-number {

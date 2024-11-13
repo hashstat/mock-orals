@@ -9,9 +9,10 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
 </head>
 
@@ -192,6 +193,10 @@
   </div>
 
 
+  <template id="alert-template">
+    <div class="alert alert-warning narrow mx-auto m-4" role="alert"></div>
+  </template>
+
   <template id="division-translation-template">
     <div class="container">
       <div class="row">
@@ -205,7 +210,7 @@
   </template>
 
   <template id="verse-card-template">
-    <div class="passage card border-secondary shadow mx-auto m-4">
+    <div class="passage card border-secondary shadow narrow mx-auto m-4">
       <div class="card-header d-flex justify-content-between">
           <span class="passage-number"></span>
           <div class="text-end" role="group" aria-label="Passage buttons">
@@ -245,6 +250,16 @@
           Complete
         </button>
       </div>
+    </div>
+  </template>
+
+  <template id="scroll-up-template">
+    <div class="narrow mx-auto m-4 text-end">
+      <button type="button" class="btn btn-sm btn-outline-secondary" aria-label="Scroll to the top" title="Scroll to the top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/>
+        </svg>
+      </button>
     </div>
   </template>
 </body>

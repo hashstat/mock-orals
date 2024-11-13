@@ -37,7 +37,9 @@ function $(query, element=document) {
 
 
 async function generate() {
-  $('#passages').style.opacity = 0
+  const passagesDiv = $('#passages')
+  passagesDiv.style.opacity = 0
+  let content, timeout = new Promise(resolve => setTimeout(resolve, 250))
 
   const translation = $('input[name="translation"]:checked').value,
       division = $('input[name="division"]:checked').value,
@@ -50,11 +52,24 @@ async function generate() {
     passages = passages.filter(passage => (passage.word_count <= wordLimit))
     console.log(`${passages.length} passages remaining after filtering those with greater than ${wordLimit} words`)
     passages = await choosePassages(passages, PASSAGE_COUNT, RECITATION_MINUTES, speechRate)
-    setPassages(passages)
+    content = createCards(passages)
+
+    const scrollUp = $('#scroll-up-template').content.firstElementChild.cloneNode(true)
+    scrollUp.addEventListener('click', () => {
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
+    })
+    content.appendChild(scrollUp)
   } catch (error) {
     console.log(error)
-    $('#passages').replaceChildren()
+    content = $('#alert-template').content.firstElementChild.cloneNode(true)
+    content.innerText =	`Passage generation failed: ${error}`
   }
+
+  await timeout
+  passagesDiv.replaceChildren(content)
+  await new Promise(resolve => setTimeout(resolve, 250))
+  passagesDiv.style.opacity = 1
 }
 
 
@@ -103,9 +118,9 @@ function pick(items, count) {
 }
 
 
-function setPassages(passages) {
+function createCards(passages) {
   const node = document.createDocumentFragment(),
-      labels = $('#division-translation-template').content.cloneNode(true)
+      labels = $('#division-translation-template').content.firstElementChild.cloneNode(true)
 
   $('.division-label', labels).innerText = passages[0].division
   $('.translation-label', labels).innerText = passages[0].translation
@@ -128,15 +143,13 @@ function setPassages(passages) {
     words.addEventListener('click', wordClicked)
   }
 
-  const div = $('#passages')
-  div.replaceChildren(node)
-  div.style.opacity = 1
+  return node;
 }
 
 
 function passageCard(passage, number) {
   /* Create card node by cloning the html template, then fill in fields. */
-  const card = $('#verse-card-template').content.cloneNode(true)
+  const card = $('#verse-card-template').content.firstElementChild.cloneNode(true)
   $('.passage-number', card).textContent = number
   $('.card-title span', card).textContent = passage.reference
   $('.card-subtitle span', card).textContent = passage.reference
