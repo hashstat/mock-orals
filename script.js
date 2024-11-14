@@ -1,19 +1,38 @@
+import { fetchPassages, choosePassages } from "/passages.js"
 
-const YEAR = 2025,
-      PASSAGE_COUNT = 12,
+function setTheme(theme) {
+  if (theme === 'auto') {
+    document.documentElement.setAttribute('data-bs-theme',
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
+  } else {
+    document.documentElement.setAttribute('data-bs-theme', theme)
+  }
+}
+
+function preferredTheme() {
+  let theme = localStorage.theme
+  if (!theme || theme === 'auto') {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+  return theme;
+}
+
+setTheme(preferredTheme())
+
+
+const PASSAGE_COUNT = 12,
       RECITATION_MINUTES = 8,
       passageCache = {}
-
 
 const DEFAULTS = Object.freeze({
   translation: 'nkjv',
   division: 'senior',
-  speechRate: Object.freeze({
+  speechRate: Object.freeze({  // words per minute
     'senior': 140,
     'junior': 130,
     'primary': 115,
   }),
-  wordLimit: Object.freeze({
+  wordLimit: Object.freeze({  // number of words
     'senior': 170,
     'junior': 160,
     'primary': 120,
@@ -70,51 +89,6 @@ async function generate() {
   passagesDiv.replaceChildren(content)
   await new Promise(resolve => setTimeout(resolve, 250))
   passagesDiv.style.opacity = 1
-}
-
-
-async function fetchPassages(division, translation) {
-  const key = `${division.toLowerCase()}-${translation.toLowerCase()}`
-  let passages = passageCache[key]
-  if (passages === undefined) {
-    passages = await (await fetch(`${YEAR}/${key}.json`, {method: 'GET'})).json()
-    passageCache[division] = passages
-  }
-  return passages
-}
-
-
-function choosePassages(passages, count, totalMinutes, targetWordsPerMinute) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const minRate = targetWordsPerMinute - 7.5,
-            maxRate = targetWordsPerMinute + 7.5
-      let attempt, words, wpm
-
-      for (attempt = 0; attempt < 1000000; attempt++) {
-        const picked = pick(passages, count)
-        words = picked.reduce((total, p) => (total + p.word_count), 0)
-        wpm = words / totalMinutes
-        if (minRate <= wpm && wpm <= maxRate) {
-          console.log(`${count} passages chosen: words = ${words}, wpm = ${wpm}`)
-          resolve(picked)
-          return
-        }
-      }
-      reject('Maximum attempts reached. Please adjust parameters and try again.')
-    }, 0)
-  })
-}
-
-
-function pick(items, count) {
-  const indices = Array.from(items, (_, i) => i),
-    chosen = []
-  while (indices.length && chosen.length < count) {
-    const i = Math.floor(Math.random() * indices.length)
-    chosen.push(items[indices.splice(i, 1)[0]])
-  }
-  return chosen
 }
 
 
@@ -368,31 +342,10 @@ document.addEventListener("DOMContentLoaded", () => {
   $('input:checked', textSize).dispatchEvent(new Event('input', {bubbles: true}))
   hideVerseNumbers.dispatchEvent(new Event('input'))
   hidePassageText.dispatchEvent(new Event('input'))
-  // Theme updating is performed early in index.html
+  // Theme updating is performed early below
 
   for (const button of $('.generate-button')) {
     button.addEventListener('click', generate)
   }
   new bootstrap.Modal('#settings').show()
-//  $('#settings-button').click()
 })
-
-
-function setTheme(theme) {
-  if (theme === 'auto') {
-    document.documentElement.setAttribute('data-bs-theme',
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
-  } else {
-    document.documentElement.setAttribute('data-bs-theme', theme)
-  }
-}
-
-function preferredTheme() {
-  let theme = localStorage.theme
-  if (!theme || theme === 'auto') {
-    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
-  return theme;
-}
-
-setTheme(preferredTheme())
