@@ -1,5 +1,5 @@
 
-const YEAR = 2024,
+const YEAR = 2025,
       PASSAGE_COUNT = 12,
       RECITATION_MINUTES = 8,
       passageCache = {}
