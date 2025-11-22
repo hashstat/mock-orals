@@ -27,6 +27,7 @@ export function choosePassages(passages, count, totalMinutes, targetWordsPerMinu
         wpm = words / totalMinutes
         if (minRate <= wpm && wpm <= maxRate) {
           console.log(`${count} passages chosen: words = ${words}, wpm = ${wpm}`)
+          rearrangePassages(picked)
           resolve(picked)
           return
         }
@@ -45,4 +46,18 @@ function pick(items, count) {
     chosen.push(items[indices.splice(i, 1)[0]])
   }
   return chosen
+}
+
+
+// Move longest passages to the end of the list otherwise maintaining their original order
+function rearrangePassages(passages, longestCount=2) {
+  const longestIndices = Array.from(passages, (p, i) => [p.word_count, i])
+      .sort(([a, i], [b, j]) => a - b).slice(-2).map(([_, i]) => i).sort()
+  for (const i of longestIndices) {
+    passages.push(passages[i])
+  }
+  for (const i of longestIndices.reverse()) {
+    passages.splice(i, 1)
+  }
+  return passages
 }
